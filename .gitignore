@@ -1,0 +1,30 @@
+# Build / packaging artifacts
+build/
+dist/
+*.egg-info/
+wheelhouse/
+*.whl
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Test / tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

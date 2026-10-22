@@ -1,0 +1,91 @@
+[project]
+name = "eventloop"
+version = "0.1.0"
+description = "God-tier event loop implementation for Python - educational, production-ready, and research-grade"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Event Loop Research Team"}]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: System :: Networking",
+]
+dependencies = [
+    "typing_extensions>=4.8",
+]
+
+[project.optional-dependencies]
+io_uring = ["io-uring>=0.5"]
+uvloop = ["uvloop>=0.19"]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.21",
+    "pytest-benchmark>=4.0",
+    "hypothesis>=6.8",
+    "coverage>=7.3",
+    "ruff>=0.1",
+    "mypy>=1.5",
+    "pyright>=1.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/example/godloop"
+Repository = "https://github.com/example/godloop"
+Issues = "https://github.com/example/godloop/issues"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["eventloop*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "I", "UP", "B", "C4", "SIM", "T20", "W", "PTH", "ERA", "PL", "TRY", "NPY", "RSE", "RET", "ARG", "PD", "PIE", "TID", "QLF", "LOG", "DTZ", "EXE", "ISC", "ICN", "PT", "Q", "FURB", "ASYNC", "FLY", "NPY", "PERF", "PTH"]
+ignore = ["S101", "S106", "S311", "B008", "B011", "C408", "T201", "T203", "PTH118", "PTH123", "ERA001", "PLR0913", "PLR0915", "TRY003", "RET503", "ARG001", "ARG002"]
+per-file-ignores = { "tests/*" = ["S101", "S106", "T201", "T203"] }
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+strict_optional = true
+enable_error_code = ["ignore-without-action", "unused-ignore", "redundant-expr"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["eventloop/tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.coverage.run]
+source = ["eventloop"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
